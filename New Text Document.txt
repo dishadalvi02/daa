@@ -1,0 +1,47 @@
+def print_board(board):
+	for row in range(n):
+		for i in range(row):
+			if i==1:
+				print("Q")
+			else:
+				print("_")
+		print()
+
+def isSafe(board,row,coln,n):
+	for i in range row:
+		if[i][col]==1:
+			return False
+	for i ,j in zip(range(row,-1,-1),range(col,-1,-1)):
+		if[i][j]==1:
+			return False
+	for i ,j in zip(range(row,-1,-1),range(col,n)):
+		if[i][j]==1:
+			return False
+	return True
+		      
+
+def solve_nqueen(board,row,n):
+	if row==n:
+		print(print_board(board))
+	for col in range(n):
+		if isSafe(board,row,col,n):
+			board[row][col]=1
+			solve_nqueen(board,row+1,n)
+			board[row][col]=0
+
+
+
+def main():
+	n=input("enter the size of the matrix:")
+	first_row_value=input("first_row_value:")
+	first_row_coln=input("first_row_coln:")
+	board=[n*0 for i in range(n)]
+	if 0<=first_row_value<n and 0<=first_row_coln<n:
+		board[first_row_value][first_row_coln]=1
+	else:
+		print("invalid input")
+	solve_nqueen(board,first_row_value+1,n)
+	
+	
+if __name__=__main__:
+	main()
